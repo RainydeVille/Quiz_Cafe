@@ -7,7 +7,7 @@ This quiz was created to practice HTML forms, radio inputs, and JavaScript form 
 
 ## 🎩 Live Demo
 
-[🔗 Live Demo](https://rainydeville.github.io/Quiz-Cafe/)
+[🔗 Live Demo](https://rainydeville.github.io/Quiz_Cafe/)
 
 ---
 
