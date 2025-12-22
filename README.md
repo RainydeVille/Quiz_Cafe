@@ -94,7 +94,7 @@ JavaScript (Vanilla) for:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/RainydeVille/Quiz-Cafe.git
+git clone https://github.com/RainydeVille/Quiz_Cafe.git
 ```
 
 2. Open index.html in a browser.
