@@ -1,6 +1,125 @@
+import { useState } from "react";
 import emblem from "./assets/hogwartsemblem.png";
 
+const questions = [
+  {
+    id: 1,
+    legend: "Pick words to live by:",
+    answers: [
+      { text: "You fuck with my friends, you fuck with me.", house: "hufflepuff" },
+      { text: "Hold my beer, I have some shady stuff to do.", house: "slytherin" },
+      { text: "Sleep is for the weak. I can figure this out.", house: "ravenclaw" },
+      { text: "Do it for the plot *wink*.", house: "gryffindor" },
+    ],
+  },
+  {
+    id: 2,
+    legend: "There's a situation at Hogwarts. In what position are you?",
+    answers: [
+      { text: "You are staying out of the situation.", house: "ravenclaw" },
+      { text: "You are emotional help of those affected by the situation.", house: "hufflepuff" },
+      { text: "You are dealing with the situation.", house: "gryffindor" },
+      { text: "You are the reason the situation happened.", house: "slytherin" },
+    ],
+  },
+  {
+    id: 3,
+    legend: "Why did you end up in the hospital wing?",
+    answers: [
+      {
+        text: "I was in a competition with my mate to see which one can walk the wall higher using spell that sticks your feet to the surface.",
+        house: "gryffindor",
+      },
+      { text: "I tried to hex Peeves. No, I am not telling you why.", house: "slytherin" },
+      { text: "I was reading my book. I swear that staircase change came out of nowhere.", house: "ravenclaw" },
+      { text: "I tried to pet Mrs. Norris.", house: "hufflepuff" },
+    ],
+  },
+  {
+    id: 4,
+    legend: "What challenge are you participating in?",
+    answers: [
+      { text: "Grab a leaf from a Whomping Willow.", house: "gryffindor" },
+      { text: "Get a certain book from a certain place. I need to quote what's written on page 86 line 14 word for word.", house: "ravenclaw" },
+      { text: "Slip a kind note without notice. We have point system of difficulty for every house.", house: "hufflepuff" },
+      { text: "Drink every time Draco says POTTAH.", house: "slytherin" },
+    ],
+  },
+  {
+    id: 5,
+    legend: "You are waiting for exam results. Your reaction:",
+    answers: [
+      { text: "We are hosting a meet up in our common room about the exam's questions.", house: "ravenclaw" },
+      { text: "Not to brag but I won the best cheating tactics award today.", house: "slytherin" },
+      { text: "I mean... it is what it is.", house: "gryffindor" },
+      { text: "I did the best I could do. We are having tea and cookies in the common room btw.", house: "hufflepuff" },
+    ],
+  },
+  {
+    id: 6,
+    legend: "There's this person you really like. How do you act around them?",
+    answers: [
+      { text: "Um... lean on the wall with one shoulder and try to look cool?", house: "gryffindor" },
+      { text: "I hug them longer than I should ^_^", house: "hufflepuff" },
+      { text: "Every time they ask for help I help...", house: "ravenclaw" },
+      { text: "Defend them behind their back from everything.", house: "slytherin" },
+    ],
+  },
+  {
+    id: 7,
+    legend: "Pick one:",
+    answers: [
+      { text: "Sometimes you're a stubborn piece of shit.", house: "gryffindor" },
+      { text: "You're a snob who secretly likes romantic comedies.", house: "slytherin" },
+      { text: "You're a nerd. A. Humongous. Nerd.", house: "ravenclaw" },
+      { text: "You can breed a devil in a suitcase and call it Bob.", house: "hufflepuff" },
+    ],
+  },
+  {
+    id: 8,
+    legend: "French have given us many good things:",
+    answers: [
+      { text: "Croissants and café au lait.", house: "ravenclaw" },
+      { text: "French toast.", house: "gryffindor" },
+      { text: "French fries.", house: "hufflepuff" },
+      { text: "The guillotine.", house: "slytherin" },
+    ],
+  },
+  {
+    id: 9,
+    legend: "Someone falls from the stairs:",
+    answers: [
+      { text: "*laugh* idiot.", house: "slytherin" },
+      { text: "ooouuuch. I felt that.", house: "gryffindor" },
+      { text: "Oh no! Are you alright?!", house: "hufflepuff" },
+      { text: "Was in my Paracosm and didn't even hear it.", house: "ravenclaw" },
+    ],
+  },
+  {
+    id: 10,
+    legend: "Pick a style:",
+    answers: [
+      { text: "Cottagecore.", house: "hufflepuff" },
+      { text: "Grunge.", house: "gryffindor" },
+      { text: "Dark Academia.", house: "slytherin" },
+      { text: "Light Academia.", house: "ravenclaw" },
+    ],
+  },
+];
+
+//Fisher–Yates shuffle algorithm
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
 export default function App() {
+  const [shuffledQuestions] = useState(() => shuffle(questions));
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // score tracker
@@ -11,7 +130,7 @@ export default function App() {
       hufflepuff: 0,
     };
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(e.target);
 
     let totalAnswers = 0;
 
@@ -51,247 +170,19 @@ export default function App() {
       <h1>Hogwarts House Sorting Quiz</h1>
       <img id="emblem" src={emblem} alt="Hogwarts emblem" />
 
-      <fieldset>
-        <legend>Pick words to live by:</legend>
-        <label>
-          <input type="radio" name="q1" value="hufflepuff" />
-          You fuck with my friends, you fuck with me.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q1" value="slytherin" />
-          Hold my beer, I have some shady stuff to do.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q1" value="ravenclaw" />
-          Sleep is for the weak. I can figure this out.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q1" value="gryffindor" />
-          Do it for the plot *wink*.
-        </label>
-      </fieldset>
+      {shuffledQuestions.map((q, qIndex) => (
+        <fieldset key={q.id}>
+          <legend>{q.legend}</legend>
 
-      <br />
-
-      <fieldset>
-        <legend>There's a situation at Hogwarts. In what position are you?</legend>
-        <label>
-          <input type="radio" name="q2" value="ravenclaw" />
-          You are staying out of the situation.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q2" value="hufflepuff" />
-          You are emotional help of those affected by the situation.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q2" value="gryffindor" />
-          You are dealing with the situation.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q2" value="slytherin" />
-          You are the reason the situation happened.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>Why did you end up in the hospital wing?</legend>
-        <label>
-          <input type="radio" name="q3" value="gryffindor" />I was in a competition with my mate to see which one can walk the wall higher using spell
-          that sticks your feet to the surface.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q3" value="slytherin" />I tried to hex Peeves. No, I am not telling you why.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q3" value="ravenclaw" />I was reading my book. I swear that staircase change came out of nowhere.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q3" value="hufflepuff" />I tried to pet Mrs. Norris.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>What challenge are you participating in?</legend>
-        <label>
-          <input type="radio" name="q4" value="gryffindor" />
-          Grab a leaf from a Whomping Willow.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q4" value="ravenclaw" />
-          Get a certain book from a certain place. I need to quote what's written on page 86 line 14 word for word.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q4" value="hufflepuff" />
-          Slip a kind note without notice. We have point system of difficulty for every house.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q4" value="slytherin" />
-          Drink every time Draco says POTTAH.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>You are waiting for exam results. Your reaction:</legend>
-        <label>
-          <input type="radio" name="q5" value="ravenclaw" />
-          We are hosting a meet up in our common room about the exam's questions.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q5" value="slytherin" />
-          Not to brag but I won the best cheating tactics award today.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q5" value="gryffindor" />I mean... it is what it is.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q5" value="hufflepuff" />I did the best I could do. We are having tea and cookies in the common room btw.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>There's this person you really like. How do you act around them?</legend>
-        <label>
-          <input type="radio" name="q6" value="gryffindor" />
-          Um... lean on the wall with one shoulder and try to look cool?
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q6" value="hufflepuff" />I hug them longer than I should ^_^
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q6" value="ravenclaw" />
-          Every time they ask for help I help...
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q6" value="slytherin" />
-          Defend them behind their backs from everything.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>Pick one:</legend>
-        <label>
-          <input type="radio" name="q7" value="gryffindor" />
-          Sometimes you're a stubborn piece of shit.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q7" value="slytherin" />
-          You're a snob who secretly likes romantic comedies.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q7" value="ravenclaw" />
-          You're a nerd. A. Humongous. Nerd.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q7" value="hufflepuff" />
-          You can breed a devil in a suitcase and call it Bob.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>French have given us many good things:</legend>
-        <label>
-          <input type="radio" name="q8" value="ravenclaw" />
-          Croissants and café au lait.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q8" value="gryffindor" />
-          French toast.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q8" value="hufflepuff" />
-          French fries.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q8" value="slytherin" />
-          The guillotine.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>Someone falls from the stairs:</legend>
-        <label>
-          <input type="radio" name="q9" value="slytherin" />
-          *laugh* idiot.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q9" value="gryffindor" />
-          ooouuuch. I felt that.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q9" value="hufflepuff" />
-          Oh no! Are you alright?!
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q9" value="ravenclaw" />
-          Was in my Paracosm and didn't even hear it.
-        </label>
-      </fieldset>
-
-      <br />
-
-      <fieldset>
-        <legend>Pick a style:</legend>
-        <label>
-          <input type="radio" name="q10" value="hufflepuff" />
-          Cottagecore.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q10" value="gryffindor" />
-          Grunge.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q10" value="slytherin" />
-          Dark Academia.
-        </label>
-        <br />
-        <label>
-          <input type="radio" name="q10" value="ravenclaw" />
-          Light Academia.
-        </label>
-      </fieldset>
+          {q.answers.map((a, aIndex) => (
+            <label key={aIndex}>
+              <input type="radio" name={`q${qIndex + 1}`} value={a.house} />
+              {a.text}
+              <br />
+            </label>
+          ))}
+        </fieldset>
+      ))}
 
       <br />
 

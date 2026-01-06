@@ -45,6 +45,16 @@ h1 {
   margin-left: 20rem;
 }
 
+label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+}
+
+fieldset {
+  margin-bottom: 1.5rem;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
