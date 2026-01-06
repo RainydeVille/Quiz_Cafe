@@ -1,3 +1,5 @@
+import emblem from "./assets/hogwartsemblem.png";
+
 export default function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,6 +49,7 @@ export default function App() {
   return (
     <form id="sortingHatQuiz" onSubmit={handleSubmit}>
       <h1>Hogwarts House Sorting Quiz</h1>
+      <img id="emblem" src={emblem} alt="Hogwarts emblem" />
 
       <fieldset>
         <legend>Pick words to live by:</legend>
