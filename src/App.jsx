@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo } from "react";
 import emblem from "./assets/hogwartsemblem.png";
 
 const questions = [
@@ -117,8 +117,15 @@ function shuffle(arr) {
   return copy;
 }
 
+function shuffleQuestionsAndAnswers(questions) {
+  return shuffle(questions).map((q) => ({
+    ...q,
+    answers: shuffle(q.answers),
+  }));
+}
+
 export default function App() {
-  const [shuffledQuestions] = useState(() => shuffle(questions));
+  const shuffledQuestions = useMemo(() => shuffleQuestionsAndAnswers(questions), []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
