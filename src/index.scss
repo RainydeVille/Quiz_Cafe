@@ -1,5 +1,13 @@
+//main font
+@font-face {
+  font-family: "PressStart";
+  src: url("./assets/fonts/PressStart2P.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "PressStart", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -42,7 +50,7 @@ h1 {
 #emblem {
   display: flex;
   margin: 3rem;
-  margin-left: 20rem;
+  margin-left: 35rem;
 }
 
 label {
