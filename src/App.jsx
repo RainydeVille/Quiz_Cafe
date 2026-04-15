@@ -39,7 +39,7 @@ const questions = [
     id: 4,
     legend: "What challenge are you participating in?",
     answers: [
-      { text: "Grab a leaf from a Whomping Willow.", house: "gryffindor" },
+      { text: "Grab a leaf from the Whomping Willow.", house: "gryffindor" },
       { text: "Get a certain book from a certain place. I need to quote what's written on page 86 line 14 word for word.", house: "ravenclaw" },
       { text: "Slip a kind note without notice. We have point system of difficulty for every house.", house: "hufflepuff" },
       { text: "Drink every time Draco says POTTAH.", house: "slytherin" },
