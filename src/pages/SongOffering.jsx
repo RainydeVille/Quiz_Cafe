@@ -43,7 +43,7 @@ function shuffle(arr) {
 function shuffleAnswers(questions) {
   return questions.map((q) => ({
     ...q,
-    answers: shuffle(q.asnwers),
+    answers: shuffle(q.answers),
   }));
 }
 
@@ -52,7 +52,6 @@ export default function SongOffering() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     //score tracker
     const scores = {
       SS: 0,
@@ -65,39 +64,41 @@ export default function SongOffering() {
     let totalAnswers = 0;
 
     // loop through questions
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= questions.length; i++) {
       const answer = formData.get(`q${i}`);
       if (answer) {
         scores[answer]++;
         totalAnswers++;
       }
     }
-  };
 
-  // no answers selected
-  if (totalAnswers === 0) {
-    alert("Answer at least one question");
-    return;
-  }
-
-  // determine song
-  let topSong = null;
-  let maxScore = -1;
-
-  for (const song in scores) {
-    if (scores[song] > maxScore) {
-      maxScore = scores[song];
-      topSong = song;
+    // no answers selected
+    if (totalAnswers === 0) {
+      alert("Answer at least one question");
+      return;
     }
-  }
 
-  const pretty = topSong.charAt(0).toUpperCase() + topSong.slice(1);
+    // determine song
+    let topSong = null;
+    let maxScore = -1;
+
+    for (const song in scores) {
+      if (scores[song] > maxScore) {
+        maxScore = scores[song];
+        topSong = song;
+      }
+    }
+
+    const pretty = topSong.charAt(0).toUpperCase() + topSong.slice(1);
+
+    alert(`Your song is... ${pretty.toUpperCase()}! 🪄`);
+  };
 
   return (
     <form id="SongOfferingQuiz" onSubmit={handleSubmit}>
       <h1>Song Offering Quiz</h1>
 
-      {shuffledQuestions.map((q, qIndex) => (
+      {shuffledAnswers.map((q, qIndex) => (
         <fieldset key={q.id}>
           <legend>{q.legend}</legend>
 
