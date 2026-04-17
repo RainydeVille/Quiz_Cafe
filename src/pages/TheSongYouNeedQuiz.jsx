@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { quizTree } from "../library/questions/songQuestions";
+import { getSong } from "../utils/songquizutil";
 
 export default function SongOffering() {
   const [currentId, setCurrentId] = useState("start");
@@ -10,11 +11,20 @@ export default function SongOffering() {
   }
 
   if (currentNode.result) {
+    const { vibe, subVibe } = currentNode.result;
+
+    const song = getSong(vibe, subVibe);
+
     return (
       <div>
-        <h1>Your Vibe:</h1>
+        <h1>Your vibe:</h1>
         <p>
-          {currentNode.result.vibe} - {currentNode.result.subVibe}
+          {vibe} - {subVibe}
+        </p>
+
+        <h2>Song for you:</h2>
+        <p>
+          {song.artist} - {song.title}
         </p>
       </div>
     );

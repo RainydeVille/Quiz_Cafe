@@ -29,7 +29,7 @@ export const quizTree = {
   result_foresty: {
     id: "result_foresty",
     result: {
-      vibe: "etherial",
+      vibe: "ethereal",
       subVibe: "foresty",
     },
   },
@@ -37,7 +37,7 @@ export const quizTree = {
   result_sunny: {
     id: "result_sunny",
     result: {
-      vibe: "etherial",
+      vibe: "ethereal",
       subVibe: "sunny",
     },
   },
