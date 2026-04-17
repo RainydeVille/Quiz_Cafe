@@ -7,7 +7,7 @@ export default function Home() {
       <h3>Choose a quiz:</h3>
       <Link to="/hogwartshousequiz">Howarts House Quiz</Link>
       <br />
-      <Link to="/songofferingquiz">Song Offering Quiz</Link>
+      <Link to="/songyouneedquiz">The Song You Need Quiz</Link>
     </div>
   );
 }

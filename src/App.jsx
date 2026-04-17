@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import HogwartsHouseQuiz from "./pages/HogwartsHouseQuiz";
-import SongOffering from "./pages/SongOffering";
+import SongOffering from "./pages/TheSongYouNeedQuiz";
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/hogwartshousequiz" element={<HogwartsHouseQuiz />} />
-        <Route path="/songofferingquiz" element={<SongOffering />} />
+        <Route path="/songyouneedquiz" element={<SongOffering />} />
       </Routes>
     </BrowserRouter>
   );
