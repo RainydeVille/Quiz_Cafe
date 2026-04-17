@@ -1,22 +1,6 @@
 import { useMemo } from "react";
 import { questions } from "../library/questions/songQuestions";
-
-//Fisher–Yates shuffle algorithm
-function shuffle(arr) {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-function shuffleAnswers(questions) {
-  return questions.map((q) => ({
-    ...q,
-    answers: shuffle(q.answers),
-  }));
-}
+import { shuffleAnswers } from "../utils/shuffle-answers";
 
 export default function SongOffering() {
   const shuffledAnswers = useMemo(() => shuffleAnswers(questions), []);
