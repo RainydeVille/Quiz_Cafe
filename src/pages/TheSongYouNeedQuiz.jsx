@@ -1,75 +1,36 @@
-import { useMemo } from "react";
-import { questions } from "../library/questions/songQuestions";
-import { shuffleAnswers } from "../utils/shuffle-answers";
+import { useState } from "react";
+import { quizTree } from "../library/questions/songQuestions";
 
 export default function SongOffering() {
-  const shuffledAnswers = useMemo(() => shuffleAnswers(questions), []);
+  const [currentId, setCurrentId] = useState("start");
+  const currentNode = quizTree[currentId];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //score tracker
-    const scores = {
-      SS: 0,
-      LP: 0,
-      SG: 0,
-    };
+  function handleAnswer(nextId) {
+    setCurrentId(nextId);
+  }
 
-    const formData = new FormData(e.target);
-
-    let totalAnswers = 0;
-
-    // loop through questions
-    for (let i = 1; i <= questions.length; i++) {
-      const answer = formData.get(`q${i}`);
-      if (answer) {
-        scores[answer]++;
-        totalAnswers++;
-      }
-    }
-
-    // no answers selected
-    if (totalAnswers === 0) {
-      alert("Answer at least one question");
-      return;
-    }
-
-    // determine song
-    let topSong = null;
-    let maxScore = -1;
-
-    for (const song in scores) {
-      if (scores[song] > maxScore) {
-        maxScore = scores[song];
-        topSong = song;
-      }
-    }
-
-    const pretty = topSong.charAt(0).toUpperCase() + topSong.slice(1);
-
-    alert(`Your song is... ${pretty.toUpperCase()}! 🪄`);
-  };
+  if (currentNode.result) {
+    return (
+      <div>
+        <h1>Your Vibe:</h1>
+        <p>
+          {currentNode.result.vibe} - {currentNode.result.subVibe}
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <form id="SongOfferingQuiz" onSubmit={handleSubmit}>
-      <h1>Song Offering Quiz</h1>
+    <div>
+      <h1>The Song You Need</h1>
 
-      {shuffledAnswers.map((q, qIndex) => (
-        <fieldset key={q.id}>
-          <legend>{q.legend}</legend>
+      <h2>{currentNode.question}</h2>
 
-          {q.answers.map((a, aIndex) => (
-            <label key={aIndex}>
-              <input type="radio" name={`q${qIndex + 1}`} value={a.song} />
-              {a.text}
-              <br />
-            </label>
-          ))}
-        </fieldset>
+      {currentNode.answers?.map((a, i) => (
+        <button key={i} onClick={() => handleAnswer(a.next)}>
+          {a.text}
+        </button>
       ))}
-
-      <br />
-
-      <button type="submit">Gimme a song</button>
-    </form>
+    </div>
   );
 }

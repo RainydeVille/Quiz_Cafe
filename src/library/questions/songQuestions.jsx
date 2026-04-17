@@ -1,29 +1,60 @@
-export const questions = [
-  {
-    id: 1,
-    legend: "How do you feel?",
+export const quizTree = {
+  start: {
+    id: "start",
+    question: "Pick a vibe:",
     answers: [
-      { text: "Nostalgic", song: "SS" },
-      { text: "Sad", song: "LP" },
-      { text: "Slightly lifted from reality", song: "SG" },
+      { text: "Etherial", next: "etherial_q" },
+      { text: "Rainy", next: "rainy_q" },
     ],
   },
-  {
-    id: 2,
-    legend: "Pick a vibe:",
+
+  etherial_q: {
+    id: "etherial_q",
+    question: "Pick a subvibe:",
     answers: [
-      { text: "Going on an adventure with friends when little.", song: "SS" },
-      { text: "Looking out the window. It's raining.", song: "LP" },
-      { text: "Laying on the forest floor. Watching clouds pass by.", song: "SG" },
+      { text: "Foresty", next: "result_foresty" },
+      { text: "Sunny", next: "result_sunny" },
     ],
   },
-  {
-    id: 3,
-    legend: "Where would you like to be right now?",
+
+  rainy_q: {
+    id: "rainy_q",
+    question: "Pick a subvibe:",
     answers: [
-      { text: "Playing games with my childhood friends", song: "SS" },
-      { text: "Nowhere", song: "LP" },
-      { text: "Frolicking", song: "SG" },
+      { text: "Soft", next: "result_soft" },
+      { text: "Misty", next: "result_misty" },
     ],
   },
-];
+
+  result_foresty: {
+    id: "result_foresty",
+    result: {
+      vibe: "etherial",
+      subVibe: "foresty",
+    },
+  },
+
+  result_sunny: {
+    id: "result_sunny",
+    result: {
+      vibe: "etherial",
+      subVibe: "sunny",
+    },
+  },
+
+  result_soft: {
+    id: "result_soft",
+    result: {
+      vibe: "rainy",
+      subVibe: "soft",
+    },
+  },
+
+  result_misty: {
+    id: "result_misty",
+    result: {
+      vibe: "rainy",
+      subVibe: "misty",
+    },
+  },
+};
