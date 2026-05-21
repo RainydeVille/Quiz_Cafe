@@ -1,0 +1,23 @@
+.loadingPage {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #553d3e;
+  .logoWrapper {
+    margin-bottom: 1rem;
+    .logo {
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
+  .loadingBar {
+    width: 800px;
+  }
+  .loadingText {
+    font-size: 1.2rem;
+  }
+}
