@@ -27,6 +27,9 @@ export default function LoadingPage() {
 
         <p className="loadingText">{message}</p>
       </div>
+      <div className="startWrapper">
+        <img className="startBtn" src="./button1.png" alt="start button" />
+      </div>
     </div>
   );
 }
