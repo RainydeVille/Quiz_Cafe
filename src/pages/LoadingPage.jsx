@@ -17,6 +17,9 @@ export default function LoadingPage() {
   const loadingMessages = ["Brewing fresh quizzes...", "Polishing coffee mugs...", "Finding your favorite seat..."];
   const shuffledMessages = shuffle(loadingMessages);
   const [messageIndex, setMessageIndex] = useState(0);
+  //navigation and gif handling
+  const navigate = useNavigate();
+  const [gifSrc, setGifSrc] = useState("");
 
   //Timed button change from locked to idle
   useEffect(() => {
@@ -37,13 +40,18 @@ export default function LoadingPage() {
     return () => clearInterval(interval);
   }, [shuffledMessages]);
 
+  //gif handling
+  useEffect(() => {
+    setGifSrc(`./progression-bar.gif?t=${Date.now()}`);
+  }, []);
+
   return (
     <div className="loadingPage">
       <div className="logoWrapper">
         <h1 className="logo">Welcome to Quiz Café</h1>
       </div>
       <div className="loadingWrapper">
-        <img className="loadingBar" src="./progression-bar.gif" alt="loading..." />
+        <img className="loadingBar" src={gifSrc} alt="loading..." />
 
         <p className="loadingText">{isLoading ? shuffledMessages[messageIndex] : ""}</p>
       </div>
@@ -56,6 +64,7 @@ export default function LoadingPage() {
           onMouseLeave={() => !isLoading && setButtonState("idle")}
           onMouseDown={() => !isLoading && setButtonState("pressed")}
           onMouseUp={() => !isLoading && setButtonState("hover")}
+          onClick={() => !isLoading && navigate("/home")}
         />
       </div>
     </div>
