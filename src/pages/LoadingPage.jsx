@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { shuffle } from "../utils/shuffle";
 import "./LoadingPage.scss";
 
 export default function LoadingPage() {
-  //for messages
-  const loadingMessages = ["Brewing fresh quizzes...", "Polishing coffee mugs...", "Finding your favorite seat..."];
-  const [message, setMessage] = useState(loadingMessages[0]);
   //for buttons
   const buttonImages = {
     locked: "./locked.png",
@@ -15,37 +13,29 @@ export default function LoadingPage() {
   };
   const [isLoading, setIsLoading] = useState(true);
   const [buttonState, setButtonState] = useState("locked");
-
-  //messages
-  useEffect(() => {
-    if (!isLoading) return;
-
-    const interval = setInterval(() => {
-      const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
-
-      setMessage(randomMessage);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [isLoading]);
+  //for messages
+  const loadingMessages = ["Brewing fresh quizzes...", "Polishing coffee mugs...", "Finding your favorite seat..."];
+  const shuffledMessages = shuffle(loadingMessages);
+  const [messageIndex, setMessageIndex] = useState(0);
 
   //Timed button change from locked to idle
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
       setButtonState("idle");
-      setMessage("");
     }, 3000);
 
     return () => clearTimeout(timer);
   }, []);
 
-  //unhover
-  const handleMouseLeave = () => {
-    if (!isLoading) {
-      setButtonState("idle");
-    }
-  };
+  //messages
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMessageIndex((prev) => (prev + 1) % shuffledMessages.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [shuffledMessages]);
 
   return (
     <div className="loadingPage">
@@ -55,7 +45,7 @@ export default function LoadingPage() {
       <div className="loadingWrapper">
         <img className="loadingBar" src="./progression-bar.gif" alt="loading..." />
 
-        <p className="loadingText">{message}</p>
+        <p className="loadingText">{isLoading ? shuffledMessages[messageIndex] : ""}</p>
       </div>
       <div className="startWrapper">
         <img
