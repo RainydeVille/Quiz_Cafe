@@ -18,6 +18,8 @@ export default function LoadingPage() {
 
   //messages
   useEffect(() => {
+    if (!isLoading) return;
+
     const interval = setInterval(() => {
       const randomMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
 
@@ -25,13 +27,14 @@ export default function LoadingPage() {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isLoading]);
 
   //Timed button change from locked to idle
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
       setButtonState("idle");
+      setMessage("");
     }, 3000);
 
     return () => clearTimeout(timer);
