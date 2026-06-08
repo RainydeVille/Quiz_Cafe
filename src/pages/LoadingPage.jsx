@@ -27,8 +27,7 @@ export default function LoadingPage() {
     return () => clearInterval(interval);
   }, []);
 
-  //BUTTON HANDLING
-  //from locked to idle
+  //Timed button change from locked to idle
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -38,31 +37,10 @@ export default function LoadingPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  //when hovered over
-  const handleMouseEnter = () => {
-    if (!isLoading) {
-      setButtonState("hover");
-    }
-  };
-
   //unhover
   const handleMouseLeave = () => {
     if (!isLoading) {
       setButtonState("idle");
-    }
-  };
-
-  //on click
-  const handleMouseDown = () => {
-    if (!isLoading) {
-      setButtonState("pressed");
-    }
-  };
-
-  //unclick
-  const handleMouseUp = () => {
-    if (!isLoading) {
-      setButtonState("hover");
     }
   };
 
@@ -81,10 +59,10 @@ export default function LoadingPage() {
           className="startBtn"
           src={buttonImages[buttonState]}
           alt="Go to Quiz Cafe"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseDown={handleMouseDown}
-          onMouseUp={handleMouseUp}
+          onMouseEnter={() => !isLoading && setButtonState("hover")}
+          onMouseLeave={() => !isLoading && setButtonState("idle")}
+          onMouseDown={() => !isLoading && setButtonState("pressed")}
+          onMouseUp={() => !isLoading && setButtonState("hover")}
         />
       </div>
     </div>
