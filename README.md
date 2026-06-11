@@ -1,91 +1,45 @@
-# 🪄 Sorting Hat Quiz — Form Practice Project
+# Welcome to Quiz Café
 
-A humorous, lightly unhinged Hogwarts House sorting quiz built as a follow-up to my HTML course project.
-This quiz was created to practice HTML forms, radio inputs, and JavaScript form handling beyond the basics — with plans to expand into multiple quizzes and a proper index page in the future.
+A pixel work in progress. What is it? Gamified space to chill and praticipate in quizzes. So far it's still tiny and the only quiz to engage with is Hogwarts quiz. But oh there will be more. Note that all pixel art is mine and mine alone. So if it's amateur for your eyes... that's why.
 
 ---
 
-## 🎩 Live Demo
+## Live Demo
 
 [🔗 Live Demo](https://rainydeville.github.io/Quiz_Cafe/)
 
 ---
 
-## 📖 About the Project
+## How the project is going so far
 
-This quiz is part of my ongoing journey to better understand how forms work in the browser.
-The goal was to create:
+### Download Page:
 
-- A multi-question form using radio inputs
+#### What's done:
 
-- A system for reading answers with JavaScript (I will update it to more sturdy one in the future. For now I just wanted basic functionality)
+- Faux pixel loading bar with messages.
+- Pixel Enter button that takes you to home page.
 
-- Score tracking for multiple outcomes (the Hogwarts Houses)
+#### Future plans:
 
-- A playful, personality-based quiz that reacts to user choices
+- Add sounds.
+- Make pixel background.
 
-- Input validation (sorting requires at least one answer for now)
+## Home Page
 
-The spirit of the quiz is chaotic, witty, and full of character — mirroring the tone I enjoy bringing into my projects.
+- Hogwarts house sorting quiz.
 
----
+#### Future plans:
 
-## ✨ Features
+- Make 3 actual quizzes with proper logic.
 
-### ✔️ Ten Themed Questions
+## And so much more, but I won't spoil the fun.
 
-Each question offers four choices mapped to the four Houses.
-The topics range from reactions, personal quirks, and moral alignment… to dangerous academic decisions.
+## Technologies Used
 
-### ✔️ House Score Tracking
-
-The script:
-
-- Reads which radio button is checked for each question
-
-- Increments the matching House score
-
-- Detects ties by choosing the first House with the highest score
-
-- Outputs a final judgment from the Sorting Hat
-
-### ✔️ Form Validation
-
-If the user selects zero answers, the quiz gently 🧙‍♂️ yells at them:
-
-“You belong to NOWHERE — answer at least one question!”
-
-### ✔️ Expandable Structure
-
-The project is structured so more quizzes, pages, or categories can be added later.
-
-Future updates will include:
-
-- A proper landing/index page
-
-- Additional themed quizzes
-
-- Maybe even a localStorage profile page
-
----
-
-## 🛠️ Technologies Used
-
-React framework
-
-HTML5
-
-CSS (coming soon)
-
-JavaScript (Vanilla) for:
-
-- Form handling
-
-- Score calculation
-
-- Validation
-
-- Results display
+- React framework
+- HTML5
+- SCSS
+- JavaScript
 
 ---
 
@@ -97,14 +51,12 @@ JavaScript (Vanilla) for:
 git clone https://github.com/RainydeVille/Quiz_Cafe.git
 ```
 
-2. Open index.html in a browser.
-
-3. Answer questions.
-
-4. Accept your fate.
+2. npm/pnpm dev to run it.
+3. Click enter after it unlocks.
+4. Pick a quiz.
 
 ---
 
-## ❤️ Created By
+## Created By
 
 Rainy
