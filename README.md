@@ -43,7 +43,7 @@ A pixel work in progress. What is it? Gamified space to chill and praticipate in
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 1. Clone the repository:
 
