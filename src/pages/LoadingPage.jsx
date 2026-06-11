@@ -53,7 +53,7 @@ export default function LoadingPage() {
       <div className="loadingWrapper">
         <img className="loadingBar" src={gifSrc} alt="loading..." />
 
-        <p className="loadingText">{isLoading ? shuffledMessages[messageIndex] : ""}</p>
+        <p className="loadingText">{isLoading ? shuffledMessages[messageIndex] : "\u00A0"}</p>
       </div>
       <div className="startWrapper">
         <img
